@@ -30,7 +30,6 @@ html:focus-within {
 
 /* 4. Base body settings */
 body {
-  min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
@@ -103,6 +102,11 @@ button {
 
 ::-webkit-scrollbar {
   width: 0;
+  height: 0;
+}
+
+html {
+  scrollbar-width: none;
 }
 
 /* =====================
@@ -146,17 +150,14 @@ body {
   background-image: url(huddle-landing-page-with-single-introductory-section-master/images/bg-desktop.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  min-height: 100vh;
-  background-position: center center;
-  display: flex;
-  flex-direction: column;
+  background-position: top left;
 }
 
 main {
   display: grid;
-  padding: 4rem;
-  gap: 2rem;
+  grid-template-rows: auto 1fr auto;
+  padding: 1.8rem 2rem;
+  gap: 1rem;
 }
 
 /* =====================
@@ -166,18 +167,19 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: space-around;
   gap: 2rem;
   padding: 3rem 0;
 }
 
 section img {
-  min-width: 100%;
+  width: 100%;
+  height: auto;
 }
+
 section h1 {
   color: #fff;
   font-family: "poppins", sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -185,7 +187,7 @@ section h1 {
 section p {
   font-family: "open sans", sans-serif;
   color: #fff;
-  font-size: 1.7rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
@@ -193,10 +195,10 @@ section p {
 section button {
   background-color: #fff;
   color: var(--Purple);
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.247);
-  padding: 20px 100px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  padding: 1rem 4rem;
+  font-size: 1.4rem;
   border-radius: 200px;
-  font-size: 30px;
   font-family: "poppins", sans-serif;
   transition:
     background-color 0.3s ease,
@@ -231,6 +233,7 @@ button:hover {
 footer img:hover {
   filter: invert(55%) sepia(96%) saturate(3353%) hue-rotate(294deg)
     brightness(103%) contrast(99%);
+  background-color: #fff;
 }
 
 /* =====================
@@ -244,27 +247,22 @@ footer img:hover {
    MOBILE
    =====================  */
 
-@media (max-width: 1200px) {
-  body {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    place-content: center;
-    place-items: center;
+@media (max-width: 768px) {
+  main {
     background-image: url(huddle-landing-page-with-single-introductory-section-master/images/bg-mobile.svg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
   }
 
-  main {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    place-content: center;
-    place-items: center;
+  header {
+    justify-self: start;
   }
 
   header img {
     width: 100%;
     padding: 0;
+    padding-bottom: 1rem;
   }
 
   section {
@@ -273,16 +271,18 @@ footer img:hover {
     text-align: center;
   }
 
+  section p {
+    font-size: 1.5rem;
+  }
+
   footer {
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
   }
   footer img {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
   }
 }
